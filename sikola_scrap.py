@@ -4,6 +4,7 @@ Provided because of flawed sikola system!
 """
 
 from bs4 import BeautifulSoup
+from loading import printProgressBar
 import requests
 
 session = requests.Session()
@@ -55,6 +56,8 @@ def search_courses(course_name=""):
     find_ref = None
     current_page = None
 
+    # Initial call to print 0% progress
+    printProgressBar(0, last_page+1, prefix = 'Searching:', suffix = 'Pages', autosize = True)
     for i in range(1, last_page+1):
         mata_kuliah_semester = BASE_URL + "/main/auth/courses.php?action=display_sessions&category_code=&hidden_links=&pageCurrent={}&pageLength=12".format(i)
         result = session.get(mata_kuliah_semester)
@@ -69,7 +72,7 @@ def search_courses(course_name=""):
                 find_ref = ref
                 current_page = i
                 break
-
+        printProgressBar(i, last_page+1, prefix = 'Searching:', suffix = 'of {} pages.'.format(last_page), autosize = True)
     return find_ref, current_page
 
 if login:
@@ -78,6 +81,7 @@ if login:
     print("========= PLEASE WAIT... >")
     ref, current_page = search_courses(course_name)
     if ref:
+        print()
         print("========= BERHASIL MENEMUKAN MATA KULIAH >")
         print("Nama:", ref.find('a')['title'])
         print("Halaman:", current_page)
