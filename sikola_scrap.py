@@ -72,6 +72,8 @@ def search_courses(course_name=""):
                 find_ref = ref
                 current_page = i
                 break
+        if find_ref:
+            break
         printProgressBar(i, last_page, prefix = 'Searching:', suffix = 'of {} pages.'.format(last_page), autosize = True)
     return find_ref, current_page
 
