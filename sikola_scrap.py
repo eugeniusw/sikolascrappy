@@ -88,5 +88,6 @@ if login:
         url = BASE_URL + "/main/auth/courses.php?action=display_sessions&category_code=&hidden_links=&pageCurrent={}&pageLength=12".format(current_page)
         print("Url:", url)
     else:
+        print()
         print("========= MATA KULIAH TIDAK DITEMUKAN >")
         print("Nama:", course_name)
