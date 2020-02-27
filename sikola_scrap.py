@@ -1,6 +1,6 @@
 """
 Author: eugene
-Provided because of the stupid sikola system!
+Provided because of flawed sikola system!
 """
 
 from bs4 import BeautifulSoup
