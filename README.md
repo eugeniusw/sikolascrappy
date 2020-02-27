@@ -1,4 +1,4 @@
-# sikolascrapy
+# sikolascrappy
 A system scrapper for unhas student who struggle to find the course in sikola. Provided because of the stupid sikola system!
 
 ## How to use?
