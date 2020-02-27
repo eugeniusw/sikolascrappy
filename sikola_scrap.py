@@ -57,7 +57,7 @@ def search_courses(course_name=""):
     current_page = None
 
     # Initial call to print 0% progress
-    printProgressBar(0, last_page+1, prefix = 'Searching:', suffix = 'Pages', autosize = True)
+    printProgressBar(0, last_page, prefix = 'Searching:', suffix = 'Pages', autosize = True)
     for i in range(1, last_page+1):
         mata_kuliah_semester = BASE_URL + "/main/auth/courses.php?action=display_sessions&category_code=&hidden_links=&pageCurrent={}&pageLength=12".format(i)
         result = session.get(mata_kuliah_semester)
@@ -72,7 +72,7 @@ def search_courses(course_name=""):
                 find_ref = ref
                 current_page = i
                 break
-        printProgressBar(i, last_page+1, prefix = 'Searching:', suffix = 'of {} pages.'.format(last_page), autosize = True)
+        printProgressBar(i, last_page, prefix = 'Searching:', suffix = 'of {} pages.'.format(last_page), autosize = True)
     return find_ref, current_page
 
 if login:
