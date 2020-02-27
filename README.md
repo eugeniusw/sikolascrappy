@@ -6,7 +6,7 @@ A system scrapper for unhas student who struggle to find the course in sikola. P
 * Run:
 ```
   pip install -r requirements.txt
-  python sikola_scrapper.py
+  python sikola_scrapp.py
 ```
 * Insert username
 * Insert password
