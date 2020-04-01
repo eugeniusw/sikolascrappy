@@ -53,8 +53,10 @@ def search_courses(course_name=""):
     pagination = list(html.select(".pagination")[0].children)
     last_page = int(pagination[len(pagination)-1].get_text())
 
-    find_ref = None
-    current_page = None
+    #find_ref = None
+    find_ref = []
+    #current_page = None
+    current_page = []
 
     # Initial call to print 0% progress
     printProgressBar(0, last_page, prefix = 'Searching:', suffix = 'Pages', autosize = True)
@@ -69,11 +71,12 @@ def search_courses(course_name=""):
         for ref in container_courses.select('.title'):
             title = ref.find('a')['title']
             if course_name.lower() in title.lower():
-                find_ref = ref
-                current_page = i
-                break
-        if find_ref:
-            break
+                find_ref.append(ref)
+                current_page.append(i)
+                print("\n{} di halaman {} \n".format(title, i))
+                #break
+        #if find_ref:
+            #break
         printProgressBar(i, last_page, prefix = 'Searching:', suffix = 'of {} pages.'.format(last_page), autosize = True)
     return find_ref, current_page
 
@@ -85,10 +88,12 @@ if login:
     if ref:
         print()
         print("========= BERHASIL MENEMUKAN MATA KULIAH >")
-        print("Nama:", ref.find('a')['title'])
-        print("Halaman:", current_page)
-        url = BASE_URL + "/main/auth/courses.php?action=display_sessions&category_code=&hidden_links=&pageCurrent={}&pageLength=12".format(current_page)
-        print("Url:", url)
+        for i in range(len(ref)):
+            print("Nama:", ref[i].find('a')['title'])
+            print("Halaman:", current_page[i])
+            url = BASE_URL + "/main/auth/courses.php?action=display_sessions&category_code=&hidden_links=&pageCurrent={}&pageLength=12".format(current_page[i])
+            print("Url:", url)
+            print("========================================")
     else:
         print()
         print("========= MATA KULIAH TIDAK DITEMUKAN >")
